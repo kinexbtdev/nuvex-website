@@ -18,3 +18,4 @@ The development server listens on port 3000. Optional public URLs are listed in 
 - `src/data/` — navigation and content, kept apart from components
 - `src/styles/globals.css` — design tokens and typography classes
 - `docs/` — reference analysis and information architecture
+
