@@ -7,7 +7,7 @@ export const hero = {
   tag: { strong: "Verifiable compute", rest: "on Solana", href: "/technology" },
   title: "Verifiable compute,",
   accent: "starting with randomness",
-  body: "Nuvex checks proofs inside Solana programs and hands the result to your callback. VRF is live in the programs today. Data, compute, and inference jobs are planned.",
+  body: "Nuvex checks proofs inside Solana programs and hands the result to your callback. VRF is live in the programs today. A configured indexer can copy those accounts for the console. Data, compute, and inference jobs are planned.",
   primary: { label: "Explore the network", href: "/network" },
   secondary: { label: "Read the docs", href: DOCS_URL },
 };
@@ -146,8 +146,14 @@ export const surfaces = {
     {
       id: "node",
       title: "Operator process",
-      body: "The node binary exposes health and metrics today. Loading a VRF key and submitting fulfilments is the next milestone.",
+      body: "The node binary exposes health and metrics. It does not load a VRF key or submit a fulfilment.",
       href: "/nodes",
+    },
+    {
+      id: "read",
+      title: "Read model",
+      body: "The indexer copies observed request, node, and proof accounts. The API and console can list them. That list is not chain authority.",
+      href: "/architecture",
     },
   ],
 } as const;
@@ -171,7 +177,7 @@ export const toolkit = {
     {
       id: "cli",
       title: "Command line",
-      body: "Node, request, registry, staking, and network commands. Each reports the milestone it is waiting on.",
+      body: "network reads the configured API and refuses to invent status if the URL is unset. The other operational commands still refuse to send.",
       href: "/nodes",
     },
   ],
@@ -296,10 +302,16 @@ export const designNotes = {
   quotes: [
     {
       source: "Protocol README",
-      context: "Milestone 3 status",
+      context: "Eligibility",
       text: "A node fulfills only when it is active, its stake meets the configured minimum,",
       accent:
         "its heartbeat is inside the configured window, and the key was registered before the request.",
+    },
+    {
+      source: "Protocol README",
+      context: "Milestone 4",
+      text: "The indexer can copy those accounts into PostgreSQL and the read API can serve them.",
+      accent: "That copy is not protocol truth.",
     },
     {
       source: "Protocol README",
@@ -341,7 +353,8 @@ export const facts = {
     eyebrow: "Building verifiable compute on Solana",
     title:
       "Nuvex accepts a job, checks the proof inside a program, and hands the result to your callback.",
-    accent: "Randomness is live in the programs. Data, computation, and inference come next.",
+    accent:
+      "Randomness is live in the programs. A configured read API can list those accounts. Data, computation, and inference come next.",
     action: { label: "Read the architecture", href: "/architecture" },
   },
 };

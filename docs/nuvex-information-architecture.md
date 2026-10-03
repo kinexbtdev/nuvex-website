@@ -44,32 +44,32 @@ None of these labels means "deployed to mainnet". Nothing is deployed to mainnet
 Routes marked "exists" are built today. The others are built in later phases, and they are not linked
 from the navigation until they exist.
 
-| Route             | Reference template             | Purpose                                               | Phase | State                     |
-| ----------------- | ------------------------------ | ----------------------------------------------------- | ----- | ------------------------- |
-| `/`               | Home                           | The whole story in the reference's section rhythm     | 3     | exists, to be rebuilt     |
-| `/protocol`       | Product (AI Marketing)         | The request lifecycle and the four job families       | 4     | new                       |
-| `/technology`     | Product (Intelligent Campaign) | Verification, proofs, callbacks                       | 4     | exists, to be rebuilt     |
-| `/architecture`   | Marketing                      | Programs, accounts, and the off-chain boundary        | 4     | exists, to be rebuilt     |
-| `/network`        | Product                        | The node network: stake, heartbeat, selection, slash  | 4     | exists, to be rebuilt     |
-| `/nodes`          | Marketing                      | Operator guide entry                                  | 4     | exists, to be rebuilt     |
-| `/security`       | Marketing                      | Threat model, audit status, open decisions            | 4     | exists, to be rebuilt     |
-| `/developers`     | Product (Integration)          | SDKs, CLI, API, examples                              | 4     | exists, to be rebuilt     |
-| `/docs`           | Marketing                      | Documentation landing that links to the docs site     | 4     | new                       |
-| `/ecosystem`      | Collection (Work)              | Use-case categories, each labelled Example or Concept | 5     | exists, to be rebuilt     |
-| `/work`           | Collection (Work)              | Example integrations, all labelled Example or Concept | 5     | new                       |
-| `/work/[slug]`    | Collection item                | One example, written as a walkthrough                 | 5     | new                       |
-| `/blog`           | Collection (Blog)              | Engineering notes with category filters               | 6     | exists, to be rebuilt     |
-| `/blog/[slug]`    | Collection item                | One post                                              | 6     | `milestone-0` exists      |
-| `/careers`        | Marketing (Career)             | Principles. Roles only if real roles are open         | 7     | new                       |
-| `/careers/[slug]` | Collection item                | One role                                              | 7     | new, only with real roles |
-| `/about`          | Marketing                      | Why Nuvex exists, principles, milestones              | 8     | new                       |
-| `/contact`        | Form                           | Contact form, handled locally until a backend exists  | 8     | new                       |
-| `/pricing`        | Pricing                        | Network economics, every number "Coming soon"         | 4     | new                       |
-| `/changelog`      | Utility                        | Milestone history                                     | 9     | new                       |
-| `/privacy`        | Legal                          | Privacy policy                                        | 9     | new                       |
-| `/terms`          | Legal                          | Terms of use                                          | 9     | new                       |
-| `/not-found`      | Utility (404)                  | Not-found page                                        | 9     | new                       |
-| `/app/*`          | (none)                         | Console shell. Reads are not wired until Milestone 4  | later | exists                    |
+| Route             | Reference template             | Purpose                                                              | Phase | State                     |
+| ----------------- | ------------------------------ | -------------------------------------------------------------------- | ----- | ------------------------- |
+| `/`               | Home                           | The whole story in the reference's section rhythm                    | 3     | exists, to be rebuilt     |
+| `/protocol`       | Product (AI Marketing)         | The request lifecycle and the four job families                      | 4     | new                       |
+| `/technology`     | Product (Intelligent Campaign) | Verification, proofs, callbacks                                      | 4     | exists, to be rebuilt     |
+| `/architecture`   | Marketing                      | Programs, accounts, and the off-chain boundary                       | 4     | exists, to be rebuilt     |
+| `/network`        | Product                        | The node network: stake, heartbeat, selection, slash                 | 4     | exists, to be rebuilt     |
+| `/nodes`          | Marketing                      | Operator guide entry                                                 | 4     | exists, to be rebuilt     |
+| `/security`       | Marketing                      | Threat model, audit status, open decisions                           | 4     | exists, to be rebuilt     |
+| `/developers`     | Product (Integration)          | SDKs, CLI, API, examples                                             | 4     | exists, to be rebuilt     |
+| `/docs`           | Marketing                      | Documentation landing that links to the docs site                    | 4     | new                       |
+| `/ecosystem`      | Collection (Work)              | Use-case categories, each labelled Example or Concept                | 5     | exists, to be rebuilt     |
+| `/work`           | Collection (Work)              | Example integrations, all labelled Example or Concept                | 5     | new                       |
+| `/work/[slug]`    | Collection item                | One example, written as a walkthrough                                | 5     | new                       |
+| `/blog`           | Collection (Blog)              | Engineering notes with category filters                              | 6     | exists, to be rebuilt     |
+| `/blog/[slug]`    | Collection item                | One post                                                             | 6     | `milestone-0` exists      |
+| `/careers`        | Marketing (Career)             | Principles. Roles only if real roles are open                        | 7     | new                       |
+| `/careers/[slug]` | Collection item                | One role                                                             | 7     | new, only with real roles |
+| `/about`          | Marketing                      | Why Nuvex exists, principles, milestones                             | 8     | new                       |
+| `/contact`        | Form                           | Contact form, handled locally until a backend exists                 | 8     | new                       |
+| `/pricing`        | Pricing                        | Network economics, every number "Coming soon"                        | 4     | new                       |
+| `/changelog`      | Utility                        | Milestone history                                                    | 9     | new                       |
+| `/privacy`        | Legal                          | Privacy policy                                                       | 9     | new                       |
+| `/terms`          | Legal                          | Terms of use                                                         | 9     | new                       |
+| `/not-found`      | Utility (404)                  | Not-found page                                                       | 9     | new                       |
+| `/app/*`          | (none)                         | Console shell. Reads the configured API; illustrations stay labelled | later | exists                    |
 
 The reference's `/401`, `/style-guide`, `/licenses`, and `/instructions` exist to sell a template, and
 Nuvex has no equivalent need. A credits page for photography may replace `/licenses` if images that

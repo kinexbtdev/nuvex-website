@@ -1,4 +1,13 @@
-import { Brain, Cpu, Database, Dices, Layers, Network, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  Brain,
+  Cpu,
+  Database,
+  Dices,
+  Layers,
+  Network,
+  type LucideIcon,
+} from "lucide-react";
 
 import { SlideUp } from "@/components/animations/SlideUp";
 import { Button } from "@/components/buttons/Button";
@@ -29,7 +38,7 @@ import {
 export const metadata = {
   title: "About",
   description:
-    "Nuvex is a Solana-native verifiable compute and oracle protocol at Milestone 3, run through seven numbered decision records across four open repositories.",
+    "Nuvex is a Solana-native verifiable compute and oracle protocol at Milestone 4. VRF is verified on-chain, and a configured indexer can copy those accounts into a read model.",
 };
 
 const icons: Record<AboutIcon, LucideIcon> = {
@@ -39,6 +48,7 @@ const icons: Record<AboutIcon, LucideIcon> = {
   database: Database,
   cpu: Cpu,
   brain: Brain,
+  read: BookOpen,
 };
 
 export default function AboutPage() {

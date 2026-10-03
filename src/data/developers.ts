@@ -4,10 +4,10 @@ import { docsHref } from "./docs";
 import type { CapabilityStatus } from "./protocol";
 
 export const banner = {
-  tag: { strong: "Developers", rest: "Milestone 3" },
+  tag: { strong: "Developers", rest: "Milestone 4" },
   title: "Derive every address,",
   accent: "prove on the host",
-  lead: "The Rust SDK, the JavaScript SDK and the nuvex CLI ship today. They derive protocol addresses and prove a VRF output locally. None of them submits a transaction yet.",
+  lead: "The Rust SDK, the JavaScript SDK and the nuvex CLI ship today. They derive protocol addresses and prove a VRF output locally. network can read the configured API. None of them submits a transaction.",
   primary: { label: "Read the docs", href: DOCS_URL },
   secondary: { label: "Protocol source", href: GITHUB_PROTOCOL_URL },
 };
@@ -56,7 +56,7 @@ export const surfaces = {
       id: "cli",
       title: "Command line",
       accent: "nuvex",
-      body: "Five commands: node, request, registry, staking and network. Every operational command exits with the milestone that will implement it, so network reports that it is not implemented.",
+      body: "Five commands: node, request, registry, staking and network. network reads NUVEX_API_URL and refuses to invent status if it is unset. The other operational commands still exit with the milestone that implements them.",
       status: "in-development",
       link: { label: "CLI reference", href: docsHref("sdk/cli") },
     },
@@ -111,7 +111,7 @@ submitRequest({ jobType: "vrf", maxFeeLamports: 0n });`,
 # node  request  registry  staking  network
 
 nuvex network
-# network is not implemented (milestone 4)`,
+# NUVEX_API_URL is unset. The CLI does not invent network status.`,
     },
     {
       id: "cpi",

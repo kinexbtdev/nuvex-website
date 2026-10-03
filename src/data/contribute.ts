@@ -258,7 +258,7 @@ export const contributionAreas: ContributionArea[] = [
         blocks: [
           {
             kind: "text",
-            text: "node/ is the operator process and cli/ is the command entry. The CLI binary is nuvex, with the commands node, request, registry, staking and network. The network command reports that it is not implemented until Milestone 4.",
+            text: "node/ is the operator process and cli/ is the command entry. The CLI binary is nuvex, with the commands node, request, registry, staking and network. network reads NUVEX_API_URL and refuses to invent status if it is unset.",
           },
           { kind: "panel", panel: "operator" },
           {

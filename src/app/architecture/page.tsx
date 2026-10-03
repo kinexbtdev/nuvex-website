@@ -47,6 +47,16 @@ export default function ArchitecturePage() {
           items={page.lifecycle.items.map((item) => ({ ...item, visual: panels[item.panel] }))}
         />
       </Section>
+      <Section aria-labelledby="read-model-title">
+        <SectionTitle
+          id="read-model-title"
+          title={page.readModel.title}
+          accent={page.readModel.accent}
+          description={page.readModel.description}
+          align="left"
+        />
+        <FeatureCells cols={3} items={page.readModel.items} />
+      </Section>
       <FocusStatement {...page.focus} />
       <Section aria-labelledby="decisions-title">
         <SectionTitle

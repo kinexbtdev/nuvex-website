@@ -39,7 +39,7 @@ export const primaryNav: NavItem[] = [
       {
         label: "Architecture",
         href: "/architecture",
-        description: "Programs, accounts, callbacks.",
+        description: "Programs, accounts, and the read model.",
         icon: "layers",
       },
       {

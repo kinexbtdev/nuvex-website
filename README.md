@@ -1,6 +1,6 @@
 # Nuvex web
 
-The Nuvex website. It does not read chain state and it does not submit transactions.
+The Nuvex website. Console pages can read the configured API. They do not submit transactions, and an API row is not an account.
 
 The protocol, the documentation site, and the off-chain services are separate repositories.
 
@@ -18,4 +18,3 @@ The development server listens on port 3000. Optional public URLs are listed in 
 - `src/data/` — navigation and content, kept apart from components
 - `src/styles/globals.css` — design tokens and typography classes
 - `docs/` — reference analysis and information architecture
-

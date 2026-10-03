@@ -85,7 +85,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
               "Nothing in the repository sends the transaction: the node process is health-only, the TypeScript SDK's submitRequest throws on purpose, and the CLI reports the milestone it waits on.",
               "No fee moves. max_fee is stored and never charged, and ADR 0005 sets no basis points.",
               "No program is deployed to mainnet, and scripts/deploy-mainnet.sh exits before any transaction.",
-              "No indexer or read API yet, so draw history has to be read straight from accounts until Milestone 4.",
+              "The indexer and read API can list observed accounts when configured. The account is still the result; an API row is a copy.",
             ],
           },
         ],
@@ -321,7 +321,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
         blocks: [
           {
             kind: "text",
-            text: "Planned means a later milestone has to design this. It does not mean the design is finished, and nothing on this page should be read as a feed a program can call today. Milestone 4 is the indexer, PostgreSQL, the read API and dashboard reads of chain state; data and price verification come after that.",
+            text: "Planned means a later milestone has to design this. It does not mean the design is finished, and nothing on this page should be read as a feed a program can call today. Milestone 4 copies observed accounts into a read model; data and price verification come after that.",
           },
         ],
       },

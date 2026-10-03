@@ -170,13 +170,17 @@ export const tree = {
     {
       id: "api",
       title: "API",
-      description: "A read model for Milestone 4, written down before it exists.",
+      description: "A read model. Responses are not protocol truth.",
       pages: [
         {
           title: "API",
-          meta: "Collection routes under /v1 return 501",
+          meta: "Requests, nodes and network from the indexer store",
           path: "api",
-          status: "planned",
+        },
+        {
+          title: "Indexer",
+          meta: "Account snapshots into PostgreSQL or a JSON file",
+          path: "api/indexer",
         },
       ],
     },

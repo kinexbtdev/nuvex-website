@@ -139,9 +139,9 @@ These override any desire for impressive copy. Breaking one is a defect.
 
 ## Protocol facts
 
-Status: Milestone 3. Next is Milestone 4 (indexer, PostgreSQL, read API, dashboard reads of chain
-state). Nothing is deployed to mainnet; `scripts/deploy-mainnet.sh` exits before any transaction.
-Licence Apache-2.0.
+Status: Milestone 4 (indexer, PostgreSQL, read API, dashboard reads of chain state). Next is
+Milestone 5 (price adapters and a price job). Nothing is deployed to mainnet;
+`scripts/deploy-mainnet.sh` exits before any transaction. Licence Apache-2.0.
 
 - Programs: `oracle-core`, `oracle-registry`, `verification`. `crates/` holds shared types, PDA
   seeds and the cryptography boundary. `tests/` holds LiteSVM, integration and callback-consumer
@@ -170,7 +170,7 @@ Licence Apache-2.0.
 - JS SDK `@nuvex/sdk`: `requestPda(programId, requester, requestId)` and `protocolPda`.
   `submitRequest` throws, on purpose.
 - CLI binary `nuvex`, commands `node`, `request`, `registry`, `staking`, `network`. `network`
-  reports "network is not implemented (milestone 4)".
+  reads `NUVEX_API_URL` and refuses to invent status if it is unset.
 - `make check` runs formatting, Clippy, `cargo build-sbf` for the three programs and the test
   callback consumer, Rust tests and the JavaScript SDK tests. LiteSVM 0.17 loads the programs from
   `target/deploy/*.so`.

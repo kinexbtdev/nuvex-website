@@ -21,4 +21,4 @@ export const DOCS_URL = optionalUrl(process.env.NEXT_PUBLIC_DOCS_URL) ?? "https:
 export const X_URL = optionalUrl(process.env.NEXT_PUBLIC_X_URL) ?? "https://x.com/nuvexnetwork";
 export const DISCORD_URL = optionalUrl(process.env.NEXT_PUBLIC_DISCORD_URL);
 
-export const PROTOCOL_MILESTONE = "Milestone 3";
+export const PROTOCOL_MILESTONE = "Milestone 4";

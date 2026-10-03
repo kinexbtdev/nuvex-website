@@ -16,10 +16,10 @@ export const technologyPage = {
       "A Nuvex randomness request is fulfilled with an 80-byte ECVRF proof that the verification program checks on-chain before the 64-byte output is written. No audit report of the VRF crate was found.",
   },
   banner: {
-    tag: { strong: "Live in the programs", rest: "· Milestone 3" },
+    tag: { strong: "Live in the programs", rest: "· since Milestone 3" },
     title: "Randomness a program",
     accent: "can check for itself",
-    lead: "A request carries a job type, an input, constraints and an optional callback. Randomness is the first job type: a node returns an 80-byte ECVRF proof, the verification program checks it on-chain, and the 64-byte output is written before anything else happens.",
+    lead: "A request carries a job type, an input, constraints and an optional callback. Randomness is the first job type: a node returns an 80-byte ECVRF proof, the verification program checks it on-chain, and the 64-byte output is written before anything else happens. Milestone 4 can list those accounts from the read API. The account is still the result.",
     primary: { label: "See the architecture", href: "/architecture" },
     secondary: { label: "Read the docs", href: DOCS_URL },
   },
@@ -93,13 +93,13 @@ export const architecturePage = {
   meta: {
     title: "Architecture",
     description:
-      "Three Anchor programs, shared types and PDA seeds in crates/, one request lifecycle with three live transitions, and the decision records behind the callback, account and upgrade models.",
+      "Three Anchor programs, a Milestone 4 read model that copies their accounts, one request lifecycle with three live transitions, and the decision records behind the callback, account and upgrade models.",
   },
   banner: {
     tag: { strong: "Three programs", rest: "· one request account" },
     title: "How the protocol",
     accent: "is put together",
-    lead: "oracle-core creates requests and performs callbacks, oracle-registry holds nodes and stake, and verification checks proofs. Nothing else is on-chain, and no job type gets a private instruction set.",
+    lead: "oracle-core creates requests and performs callbacks, oracle-registry holds nodes and stake, and verification checks proofs. Nothing else is on-chain. Milestone 4 copies those accounts into PostgreSQL so the API and console can list them.",
     primary: { label: "See the node network", href: "/network" },
     secondary: { label: "Protocol source", href: GITHUB_PROTOCOL_URL },
   },
@@ -156,6 +156,29 @@ export const architecturePage = {
       },
     ] satisfies PanelSplit<"request" | "verify">[],
   },
+  readModel: {
+    title: "The off-chain copy",
+    accent: "is not a fourth program",
+    description:
+      "The indexer and the API live in nuvex-services. They exist so an operator can inspect accounts without subscribing to a cluster. They do not finalise a result.",
+    items: [
+      {
+        title: "Indexer",
+        body: "start polls getProgramAccounts for the configured program ids and decodes request, node, registry, protocol and VrfResult layouts. It writes PostgreSQL or a JSON snapshot. Missing RPC, program ids, or a persist target exits 2. It does not invent rows.",
+        status: "in-development",
+      },
+      {
+        title: "Read API",
+        body: "GET /v1/requests, /v1/nodes and /v1/network return 200 from that store, including an empty list. They return 503 when no store is configured. GET /health returns authority: none. Jobs, models and prices stay 501.",
+        status: "in-development",
+      },
+      {
+        title: "Console and CLI",
+        body: "The site reads NEXT_PUBLIC_API_URL when set. nuvex network reads NUVEX_API_URL and refuses to invent status if it is unset. Illustration panels stay labelled. A missing indexed row is not proof the account is absent on chain.",
+        status: "in-development",
+      },
+    ] satisfies FeatureItem[],
+  },
   focus: {
     text: "Cancel, expire and VRF fulfilment are the only live transitions.",
     accent: "Every challenge, reject and fail edge stays closed until a decision record opens it.",
@@ -198,7 +221,7 @@ export const networkPage = {
     tag: { strong: "Node network", rest: "· stake, heartbeat, first-come" },
     title: "Who may fulfil",
     accent: "a request",
-    lead: "Eligibility is a function of public inputs, so an observer can recompute it from the chain. The first eligible proof wins, and the requester never names the fulfiller.",
+    lead: "Eligibility is a function of public inputs, so an observer can recompute it from the chain. The first eligible proof wins, and the requester never names the fulfiller. Milestone 4 can list the indexed nodes and the registry minimum. The fulfil instruction is still what decides.",
     primary: { label: "Run a node", href: "/nodes" },
     secondary: { label: "Read the docs", href: DOCS_URL },
   },
@@ -244,7 +267,7 @@ export const networkPage = {
   },
   quote: {
     source: "Protocol README",
-    context: "Milestone 3 status",
+    context: "Known limitation",
     text: "An operator who funds several keys can still choose among those outputs. The cost of each extra key is the configured minimum stake.",
     accent: "A minimum of zero does not resist that.",
   },
@@ -314,8 +337,8 @@ export const nodesPage = {
       {
         title: "The CLI",
         accent: "surface",
-        body: "The binary is nuvex, with node, request, registry, staking and network commands. Every one of them reports the milestone it is waiting on, so nothing in the CLI talks to a cluster yet.",
-        status: "planned",
+        body: "The binary is nuvex, with node, request, registry, staking and network commands. network reads NUVEX_API_URL and prints the read-model body. The other commands still refuse to send a transaction.",
+        status: "in-development",
         panel: "cli",
       },
     ] satisfies PanelSplit<"operator" | "stake" | "cli">[],

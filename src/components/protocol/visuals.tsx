@@ -344,7 +344,7 @@ export function CodePanel({ variant }: { variant: "ts" | "rust" | "cli" }) {
       title: "terminal",
       lines: [
         ["k", "$ nuvex network"],
-        ["e", "network is not implemented (milestone 4)"],
+        ["e", "NUVEX_API_URL is unset"],
         ["", ""],
         ["k", "$ nuvex --help"],
         ["", "node  request  registry  staking  network"],
@@ -408,7 +408,7 @@ export function OperatorPanel() {
   ];
   return (
     <Panel className="w-full p-5">
-      <PanelHeader title="nuvex-oracle-node" meta="Milestone 3" />
+      <PanelHeader title="nuvex-oracle-node" meta="Health only" />
       <ul className="mt-5 flex flex-col">
         {rows.map(([label, value]) => (
           <li

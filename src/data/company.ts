@@ -13,10 +13,14 @@ import type { CapabilityStatus } from "./protocol";
 /** Every claim below is taken from the protocol README, the ADRs or the security documents. */
 
 export const aboutBanner = {
-  tag: { strong: "Milestone 3", rest: "— VRF verification is live", href: "/changelog" },
+  tag: {
+    strong: "Milestone 4",
+    rest: "— VRF is live, and a read model can list it",
+    href: "/changelog",
+  },
   title: "A verifiable compute protocol",
   accent: "built in the open, one milestone at a time",
-  lead: "Nuvex is a Solana-native verifiable compute and oracle protocol. Programs accept a job, an input, constraints and a callback. Randomness is the first job, and the only one with a runtime today.",
+  lead: "Nuvex is a Solana-native verifiable compute and oracle protocol. Programs accept a job, an input, constraints and a callback. Randomness is the first job, and the only one with a runtime today. Milestone 4 copies those accounts into a read model the console can show.",
   primary: { label: "Read the architecture", href: "/architecture" },
   secondary: { label: "Browse the source", href: GITHUB_PROTOCOL_URL },
 };
@@ -29,7 +33,7 @@ export const aboutCounters = [
   { value: 4, label: "Open repositories" },
 ];
 
-export type AboutIcon = "layers" | "dice" | "network" | "database" | "cpu" | "brain";
+export type AboutIcon = "layers" | "dice" | "network" | "database" | "cpu" | "brain" | "read";
 
 export type AboutCapability = {
   icon: AboutIcon;
@@ -42,7 +46,7 @@ export const aboutCapabilities = {
   title: "What the protocol does today,",
   accent: "and what it does not",
   description:
-    "One request account carries every job type. Only the randomness path has instructions behind it.",
+    "One request account carries every job type. Only the randomness path has instructions behind it. Milestone 4 adds an off-chain copy of the accounts that path writes.",
   items: [
     {
       icon: "layers",
@@ -61,6 +65,12 @@ export const aboutCapabilities = {
       title: "Registry and stake",
       body: "Nodes register a VRF key, lock the configured minimum stake, heartbeat inside a window, and can be slashed by a configured authority.",
       status: "live",
+    },
+    {
+      icon: "read",
+      title: "Indexer and read API",
+      body: "When configured, the indexer copies request, node, registry, protocol and VrfResult accounts. The API and console can list them, including an empty list. The copy is not chain authority.",
+      status: "in-development",
     },
     {
       icon: "database",
@@ -85,7 +95,16 @@ export const aboutCapabilities = {
 
 export const aboutStrip = {
   caption: "Built with open tools and standards",
-  names: ["Solana", "Anchor", "Rust", "TypeScript", "LiteSVM", "RFC 9381", "Ed25519", "Apache-2.0"],
+  names: [
+    "Solana",
+    "Anchor",
+    "Rust",
+    "TypeScript",
+    "PostgreSQL",
+    "LiteSVM",
+    "RFC 9381",
+    "Apache-2.0",
+  ],
 };
 
 export const aboutFocus = {
@@ -167,13 +186,13 @@ export const repositories = {
     },
     {
       title: "Website",
-      body: "This site. It does not read chain state and it does not submit transactions, so every console view here is an illustration.",
+      body: "This site. Console pages can read the configured API. They do not submit transactions, and an API row is not an account.",
       meta: "nuvex-web",
       href: GITHUB_WEB_URL,
     },
     {
       title: "Services",
-      body: "The HTTP API, the PostgreSQL schema, the price adapters that reject every call, and the local compose files. It is not a source of protocol truth.",
+      body: "The indexer, the HTTP read API, the price adapters that reject every call, and the local compose files. It is not a source of protocol truth.",
       meta: "nuvex-services",
       href: GITHUB_SERVICES_URL,
     },

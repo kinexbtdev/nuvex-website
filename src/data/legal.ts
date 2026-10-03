@@ -7,7 +7,7 @@ import { mediaList } from "./media";
  * The repository records no calendar dates for its milestones, so these pages are
  * stamped with the milestone they describe instead of an invented date.
  */
-export const legalUpdated = "Milestone 3";
+export const legalUpdated = "Milestone 4";
 
 export const privacy: { title: string; sections: LegalSection[] } = {
   title: "Privacy",
@@ -58,7 +58,7 @@ export const privacy: { title: string; sections: LegalSection[] } = {
     {
       heading: "The console and wallets",
       paragraphs: [
-        "The console pages under /app are illustrations of the protocol surface. They read no chain state and submit no transactions.",
+        "The console pages under /app can read the configured read API. Illustration panels stay labelled. The pages submit no transactions.",
         "The wallet panel lists the wallets your browser has registered through the Wallet Standard. That detection happens in the browser, the list is not sent anywhere, and Nuvex requests no signature and no connection approval in this milestone. A detected wallet is not a protocol account.",
       ],
     },
@@ -115,7 +115,7 @@ export const terms: { title: string; sections: LegalSection[] } = {
     {
       heading: "Illustrations are not chain data",
       paragraphs: [
-        "Every console view, panel, chart and request feed on this site is a drawing of the protocol surface. The site reads no cluster and holds no indexer, and each illustration says so where it appears.",
+        "Illustration panels, charts and request feeds on this site are drawings of the protocol surface, and each one says so where it appears. Indexed tables appear only when NEXT_PUBLIC_API_URL is set, and they are copies.",
         "Do not treat a figure on this site as the state of an account. Solana account state is authoritative, and the API, indexer and dashboard are explicitly not sources of protocol truth.",
       ],
     },

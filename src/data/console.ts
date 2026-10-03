@@ -11,57 +11,67 @@ export type ConsoleView = {
   notes: { label: string; value: string }[];
 };
 
-const indexerNote = {
-  label: "Blocked on",
-  value: "Milestone 4: indexer, PostgreSQL and the read API.",
-};
-
 export const consoleViews = {
   dashboard: {
     title: "Overview",
-    status: "planned",
+    status: "in-development",
     description:
-      "The console reads no chain state. Indexed views arrive with the indexer in Milestone 4, and until then this page shows what it will read rather than a number it cannot source.",
+      "When NEXT_PUBLIC_API_URL is set, this page reads the off-chain API. An empty list is a real read. The API is not chain authority, and the illustration panels below stay labelled.",
     source: { label: "Protocol source", href: GITHUB_PROTOCOL_URL },
     notes: [
-      { label: "Will read", value: "Protocol config, request accounts, node accounts." },
-      { label: "Reads today", value: "Nothing. No RPC call is made from this page." },
-      indexerNote,
+      {
+        label: "Reads",
+        value: "GET /v1/network, /v1/requests and /v1/nodes when the API URL is set.",
+      },
+      { label: "Does not read", value: "A cluster. Rows come from the indexer store only." },
+      { label: "Authority", value: "None. Solana accounts remain the source of truth." },
     ],
   },
   requests: {
     title: "Requests",
-    status: "planned",
+    status: "in-development",
     description:
-      "A VRF request is created on-chain and can be fulfilled by an eligible node. This page does not list those accounts, so nothing shown here is a result.",
+      "Indexed request accounts from the read API. A row here is a copy of an account the indexer observed, not a finalized result.",
     source: { label: "Request lifecycle", href: "/architecture" },
     notes: [
-      { label: "Will read", value: "Request status, assigned node, and the VrfResult account." },
+      {
+        label: "Reads",
+        value: "Request status, assigned node, and any stored VrfResult output hex.",
+      },
       { label: "Finality", value: "Only the account is final. An API answer is not." },
-      indexerNote,
+      { label: "Empty list", value: "Valid. The page will not invent a request." },
     ],
   },
   nodes: {
     title: "Nodes",
-    status: "planned",
+    status: "in-development",
     description:
-      "Registered nodes, their stake and their last heartbeat live in registry accounts. This page does not read them, and a backend must never appoint a node in private.",
+      "Indexed registry accounts from the read API. A backend still must never appoint a node in private.",
     source: { label: "Eligibility rules", href: "/network" },
     notes: [
-      { label: "Will read", value: "Node identity, stake, heartbeat slot, registered VRF key." },
-      { label: "Eligibility", value: "Active, stake at the minimum, heartbeat in window." },
-      indexerNote,
+      { label: "Reads", value: "Node identity, stake, heartbeat slot, registered VRF key." },
+      {
+        label: "Eligibility",
+        value: "Active, stake at the minimum, heartbeat in window. Checked on chain.",
+      },
+      { label: "Empty list", value: "Valid. The page will not invent a node." },
     ],
   },
   network: {
     title: "Network",
-    status: "planned",
+    status: "in-development",
     description:
-      "Network-wide counts and latencies are not collected anywhere yet. The CLI says so too: its network command reports that the network view waits on Milestone 4.",
+      "Counts from the indexed store. Latency is not measured, and the CLI prints the same /v1/network payload when NUVEX_API_URL is set.",
     notes: [
-      { label: "Will read", value: "Request throughput, fulfilment latency, active node count." },
-      { label: "Measured today", value: "Nothing. No metric is aggregated." },
-      indexerNote,
+      {
+        label: "Reads",
+        value: "Request and node counts, registry min stake, protocol pause flag.",
+      },
+      { label: "Not measured", value: "Fulfilment latency. No such metric is aggregated." },
+      {
+        label: "CLI",
+        value: "nuvex network reads NUVEX_API_URL and refuses to invent status if it is unset.",
+      },
     ],
   },
   rewards: {
@@ -84,7 +94,7 @@ export const consoleViews = {
     notes: [
       { label: "Will read", value: "Fulfilment latency, proof verification cost, node uptime." },
       { label: "Measured today", value: "The node exposes health and metrics endpoints only." },
-      indexerNote,
+      { label: "Blocked on", value: "A measurement that is not a count of indexed accounts." },
     ],
   },
   "api-keys": {
@@ -96,7 +106,10 @@ export const consoleViews = {
     notes: [
       { label: "Roles", value: "Node identity, operator authority, treasury, security fund." },
       { label: "Issued here", value: "Nothing. There is no account system on this site." },
-      { label: "Read API keys", value: "Waiting on the read API in Milestone 4." },
+      {
+        label: "Read API",
+        value: "The public read API does not issue keys. Point NEXT_PUBLIC_API_URL at it.",
+      },
     ],
   },
   models: {

@@ -16,6 +16,7 @@ export type BlogPost = {
 };
 
 const photo = {
+  readModel: media.orbit,
   weakness: media.nodes,
   fee: media.matrix,
   callback: media.chip,
@@ -27,6 +28,79 @@ const photo = {
 const AUTHOR = "Nuvex maintainers";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "the-read-model-is-not-the-chain",
+    title: "The read model copies accounts. It does not decide them",
+    excerpt:
+      "Milestone 4 adds an indexer, a PostgreSQL store, and a read API the console and CLI can query. An empty list is a real answer. A row in that list is still not a finalized result.",
+    milestone: "Milestone 4",
+    author: AUTHOR,
+    category: "Protocol",
+    image: photo.readModel,
+    sections: [
+      {
+        id: "what-landed",
+        heading: "What Milestone 4 actually added",
+        blocks: [
+          {
+            kind: "text",
+            text: "The programs already stored a request, the node that fulfilled it, and the proof. Reading those accounts meant talking to a cluster. Milestone 4 adds an off-chain copy so an operator can list them. The copy lives in nuvex-services. The programs did not change, and no fee started moving.",
+          },
+          {
+            kind: "list",
+            items: [
+              "The indexer polls getProgramAccounts and decodes request, node, registry, protocol and VrfResult layouts.",
+              "It writes PostgreSQL, or a JSON snapshot when NUVEX_READ_MODEL_PATH is set.",
+              "GET /v1/requests, /v1/nodes and /v1/network return that store. An empty list is a 200.",
+              "The console reads NEXT_PUBLIC_API_URL. nuvex network reads NUVEX_API_URL.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "what-it-refuses",
+        heading: "What it refuses to do",
+        blocks: [
+          {
+            kind: "text",
+            text: "start exits 2 unless an RPC URL, at least one program id, and a place to write are set. The API returns 503 when neither DATABASE_URL nor a snapshot path is set. Jobs, models and prices stay 501. GET /health still returns authority: none.",
+          },
+          {
+            kind: "quote",
+            text: "The indexer can copy those accounts into PostgreSQL and the read API can serve them. That copy is not protocol truth.",
+            source: "Protocol README, Status",
+          },
+          {
+            kind: "text",
+            text: "A missing indexed row is not proof the account is absent on chain. The indexer only reports accounts it observed. Finality stays on the account the program wrote.",
+          },
+        ],
+      },
+      {
+        id: "how-to-read-it",
+        heading: "How to read it",
+        blocks: [
+          {
+            kind: "text",
+            text: "Apply the SQL in nuvex-services/indexer/prisma/migrations before pointing the API at Postgres. Program ids and the RPC URL stay in the environment. They are not defaults in source.",
+          },
+          {
+            kind: "code",
+            language: "bash",
+            code: `nuvex network
+# NUVEX_API_URL is unset. The CLI does not invent network status.
+
+# With the API configured, the same command prints GET /v1/network.
+# That body is a count of indexed rows, not a latency and not a result.`,
+          },
+          {
+            kind: "text",
+            text: "Illustration panels on the site stay labelled. Indexed tables appear only when the API URL is set. Fees stay unset until ADR 0005 names basis points, and nothing in this milestone deploys to mainnet.",
+          },
+        ],
+      },
+    ],
+  },
   {
     slug: "the-multi-key-weakness",
     title: "The multi-key weakness the README admits",
@@ -131,7 +205,7 @@ export const blogPosts: BlogPost[] = [
           },
           {
             kind: "text",
-            text: "Nothing is deployed to mainnet while that stands: scripts/deploy-mainnet.sh exits before any transaction, and no independent audit has been commissioned. Milestone 4 is the indexer, PostgreSQL, the read API and dashboard reads of chain state, which make the assigned node, stake and heartbeat on each request easy to inspect from outside the chain.",
+            text: "Nothing is deployed to mainnet while that stands: scripts/deploy-mainnet.sh exits before any transaction, and no independent audit has been commissioned. Milestone 4 copies the assigned node, stake and heartbeat from each request into a read model so they can be inspected without a cluster subscription. The account is still the result.",
           },
         ],
       },
@@ -232,7 +306,7 @@ export const blogPosts: BlogPost[] = [
           },
           {
             kind: "text",
-            text: "Until a record names basis points, every fee figure on this site reads coming soon. Fees stay unset through Milestone 4.",
+            text: "Until a record names basis points, every fee figure on this site reads coming soon. Milestone 4 copied accounts into a read model and still did not charge a fee.",
           },
         ],
       },

@@ -10,6 +10,7 @@ const visuals = {
   programs: <ProgramsPanel />,
   sdk: <CodePanel variant="ts" />,
   node: <OperatorPanel />,
+  read: <CodePanel variant="cli" />,
 };
 
 export function Surfaces() {

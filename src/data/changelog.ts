@@ -74,7 +74,7 @@ export const milestones: Milestone[] = [
   {
     label: "Milestone 3",
     title: "Stake configuration, the eligibility predicate and the assignment snapshot",
-    state: "Current",
+    state: "Complete",
     summary:
       "Fulfilment now requires stake, an active status and a fresh heartbeat, and the request keeps the values that were checked.",
     items: [
@@ -89,16 +89,16 @@ export const milestones: Milestone[] = [
   {
     label: "Milestone 4",
     title: "Indexer, PostgreSQL, read API and dashboard reads",
-    state: "Not started",
+    state: "Current",
     summary:
-      "The next milestone. Nothing below is implemented, and the services repository says so.",
+      "An indexer decodes known accounts and writes a read model. The API and console can show those rows. None of that is protocol truth.",
     items: [
-      "Chain indexing is not implemented. The services repository holds a PostgreSQL schema and no indexer.",
-      "The read API does not sign or authorise chain state, and it is not a source of protocol truth.",
-      "Dashboard views on this site read nothing from a cluster, which is why every console visual here is labelled an illustration.",
-      "The CLI network command reports that the network is not implemented until this milestone.",
+      "The indexer polls getProgramAccounts, decodes request, node, registry, protocol and VrfResult layouts, and upserts PostgreSQL or a JSON snapshot.",
+      "GET /v1/requests, /v1/nodes and /v1/network return 200 from that store, including an empty list. They return 503 when no store is configured. Jobs, models and prices stay 501.",
+      "The API still reports authority: none. A missing indexed row is not proof the account is absent on chain.",
+      "The console reads NEXT_PUBLIC_API_URL when set. Illustration panels stay labelled. The CLI network command reads NUVEX_API_URL and refuses to invent status if it is unset.",
       "Fees stay unset until ADR 0005 names basis points, and there is no mainnet deployment.",
     ],
-    sources: "Protocol README next milestone, nuvex-services README, ADR 0005",
+    sources: "Protocol README, nuvex-services README, ADR 0005",
   },
 ];
