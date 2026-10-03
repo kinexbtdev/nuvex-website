@@ -16,6 +16,7 @@ export type BlogPost = {
 };
 
 const photo = {
+  prices: media.night,
   readModel: media.orbit,
   weakness: media.nodes,
   fee: media.matrix,
@@ -28,6 +29,51 @@ const photo = {
 const AUTHOR = "Nuvex maintainers";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "a-price-median-is-not-a-proof",
+    title: "A price median is not a proof",
+    excerpt:
+      "Milestone 5 asks public venues for SOL, BTC, and ETH, drops anything stale or failed, and returns the median only when enough sources remain. The programs still reject a Price request.",
+    milestone: "Milestone 5",
+    author: AUTHOR,
+    category: "Protocol",
+    image: photo.prices,
+    sections: [
+      {
+        id: "what-the-api-returns",
+        heading: "What the API returns",
+        blocks: [
+          {
+            kind: "text",
+            text: "GET /v1/prices reads public tickers and trades. A USD query uses Coinbase, Kraken, and Pyth. A USDT query uses Binance and Bybit. Those quotes are not averaged together. The body says authority: none.",
+          },
+          {
+            kind: "text",
+            text: "Each observation has to carry the venue's own timestamp. The default window is 60 seconds, and the caller can set maxAgeMs between 1 and 300 seconds. The default minimum is two fresh sources. Below that, the status is 422 and median is null.",
+          },
+        ],
+      },
+      {
+        id: "what-it-will-not-fill-in",
+        heading: "What it will not fill in",
+        blocks: [
+          {
+            kind: "text",
+            text: "Pyth's public Hermes endpoint currently answers an unauthenticated request with HTTP 401. That shows up under rejected. The other venues are not asked to stand in for it with a made-up number. A source that is simply down is recorded the same way.",
+          },
+          {
+            kind: "quote",
+            text: "Programs still reject a Price request. A caller cannot treat the median as a finalized oracle result.",
+            source: "Documentation, Price oracle",
+          },
+          {
+            kind: "text",
+            text: "Data jobs stay closed. ADR 0004 names source-specific checks and a quorum, and names neither, so no adapter fetches arbitrary data. Fees stay unset.",
+          },
+        ],
+      },
+    ],
+  },
   {
     slug: "the-read-model-is-not-the-chain",
     title: "The read model copies accounts. It does not decide them",
@@ -63,7 +109,7 @@ export const blogPosts: BlogPost[] = [
         blocks: [
           {
             kind: "text",
-            text: "start exits 2 unless an RPC URL, at least one program id, and a place to write are set. The API returns 503 when neither DATABASE_URL nor a snapshot path is set. Jobs, models and prices stay 501. GET /health still returns authority: none.",
+            text: "start exits 2 unless an RPC URL, at least one program id, and a place to write are set. The API returns 503 when neither DATABASE_URL nor a snapshot path is set. Jobs and models stay 501. Price medians are a later request, not part of this copy. GET /health still returns authority: none.",
           },
           {
             kind: "quote",

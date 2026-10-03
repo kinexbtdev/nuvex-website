@@ -89,7 +89,7 @@ export const milestones: Milestone[] = [
   {
     label: "Milestone 4",
     title: "Indexer, PostgreSQL, read API and dashboard reads",
-    state: "Current",
+    state: "Complete",
     summary:
       "An indexer decodes known accounts and writes a read model. The API and console can show those rows. None of that is protocol truth.",
     items: [
@@ -100,5 +100,20 @@ export const milestones: Milestone[] = [
       "Fees stay unset until ADR 0005 names basis points, and there is no mainnet deployment.",
     ],
     sources: "Protocol README, nuvex-services README, ADR 0005",
+  },
+  {
+    label: "Milestone 5",
+    title: "Public price adapters, freshness, and a median",
+    state: "Current",
+    summary:
+      "The API can median fresh public observations. That number is not written on-chain, and a short set returns no price.",
+    items: [
+      "USD observations come from Coinbase, Kraken, and Pyth. USDT observations come from Binance and Bybit. The quotes are not mixed.",
+      "An observation counts only when the provider timestamp is inside the requested window. The default window is 60 seconds and the default minimum is 2 sources.",
+      "GET /v1/prices returns 200 with authority: none when enough sources are fresh, and 422 with a null median otherwise. Pyth's unauthenticated Hermes response is recorded as a rejection.",
+      "Programs still reject Price and Data requests. The node process does not fetch venues or submit a price transaction. Data jobs stay unspecified.",
+      "Fees stay unset until ADR 0005 names basis points, and there is no mainnet deployment.",
+    ],
+    sources: "ADR 0004, nuvex-services data/, Protocol README",
   },
 ];

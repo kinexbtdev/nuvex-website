@@ -7,7 +7,7 @@ import { changelogPage, milestones, type MilestoneState } from "@/data/changelog
 export const metadata = {
   title: "Changelog",
   description:
-    "Nuvex milestones from workspace initialisation through the current Milestone 4 read model. Fees stay unset. No dates are recorded in the repository.",
+    "Nuvex milestones from workspace initialisation through the current Milestone 5 price median. Fees stay unset. No dates are recorded in the repository.",
 };
 
 const stateTone: Record<MilestoneState, string> = {

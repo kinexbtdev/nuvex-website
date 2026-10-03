@@ -139,8 +139,7 @@ These override any desire for impressive copy. Breaking one is a defect.
 
 ## Protocol facts
 
-Status: Milestone 4 (indexer, PostgreSQL, read API, dashboard reads of chain state). Next is
-Milestone 5 (price adapters and a price job). Nothing is deployed to mainnet;
+Status: Milestone 5 (off-chain price median). Next is Milestone 6 (compute jobs). Nothing is deployed to mainnet;
 `scripts/deploy-mainnet.sh` exits before any transaction. Licence Apache-2.0.
 
 - Programs: `oracle-core`, `oracle-registry`, `verification`. `crates/` holds shared types, PDA

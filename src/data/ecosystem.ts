@@ -187,7 +187,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
           {
             kind: "list",
             items: [
-              "Settlement data. Price and Data are reserved job identifiers with no verifier, no aggregation rule and no freshness policy; ADR 0004 places both at Milestone 5.",
+              "Settlement data on-chain. A public price median exists off-chain, and programs still reject a Price request. Data jobs have no named source check.",
               "Any notion of a sequencer or ordering service inside the protocol. Nuvex returns a value; the ordering is the caller's.",
               "Commit and reveal, which ADR 0004 places at Milestone 6 for deterministic compute.",
               "Fees and rewards, so there is no economic reason for a node to race for this work yet.",
@@ -231,16 +231,16 @@ export const ecosystemEntries: EcosystemEntry[] = [
     slug: "price-feed-consumer",
     label: "Concept",
     title: "A program that consumes a price feed",
-    lead: "A lending market or a perpetuals program wants a fresh price and a bound on staleness. Nuvex reserves the job type and the request shape, and has no price verifier at all.",
+    lead: "A lending market or a perpetuals program wants a fresh price and a bound on staleness. The API can median public observations. No program can read that median from an account.",
     status: "planned",
     image: media.dc.src,
     alt: media.dc.alt,
     credit: media.dc.credit,
     meta: [
       { label: "Label", value: "Concept" },
-      { label: "Job type", value: "Price, planned" },
-      { label: "Nuvex path", value: "Reserved identifier only" },
-      { label: "Deployments", value: "None. No price feed exists." },
+      { label: "Job type", value: "Price, off-chain median" },
+      { label: "Nuvex path", value: "API response, not an account" },
+      { label: "Deployments", value: "None. Programs reject a Price request." },
     ],
     sections: [
       {
@@ -283,16 +283,16 @@ export const ecosystemEntries: EcosystemEntry[] = [
         blocks: [
           {
             kind: "text",
-            text: "Everything that would make this a feed. There is no price verifier, no median, no quorum, no freshness policy and no adapter that fetches anything.",
+            text: "An on-chain price verifier. GET /v1/prices can median fresh public observations, and programs still reject a Price request, so a consuming program cannot read that median from an account.",
           },
           {
             kind: "quote",
-            text: "Price, data, compute, and inference verifiers are still absent.",
+            text: "On-chain price, data, compute, and inference verifiers are still absent.",
             source: "ADR 0004: Verification model",
           },
           {
             kind: "text",
-            text: "The threat model puts stale data at Milestone 5 and records today's mitigation as the heartbeat window on fulfilment, adding that there are no price feeds. The row for a lying external source records that adapters do not fetch.",
+            text: "Stale observations are dropped using the provider timestamp. A source that fails is listed and not replaced. A lying venue can still move the median, and the chain does not check it.",
           },
         ],
       },
@@ -302,15 +302,14 @@ export const ecosystemEntries: EcosystemEntry[] = [
         blocks: [
           {
             kind: "text",
-            text: "In the current milestone, all of it. This entry exists to describe a shape the protocol is heading towards, not a capability to integrate against.",
+            text: "The off-chain median exists. A program that needs the number in an account still has to wait, because nothing on-chain verifies it.",
           },
           {
             kind: "list",
             items: [
-              "The observation format, the aggregation rule and the staleness bound, because ADR 0004 names a median of fresh observations as a direction rather than a specification.",
-              "The off-chain workers that collect observations, which do not exist in this tree.",
-              "A verification route for data, since a majority vote is not a proof and the ADR refuses to treat it as one.",
-              "Fallback behaviour in the consuming program for the case where no fresh price exists.",
+              "A way to read GET /v1/prices, knowing a 422 means there is no median.",
+              "Fallback behaviour in the consuming program for that empty case.",
+              "An on-chain check, which this tree does not have. A majority of HTTP responses is not a proof.",
             ],
           },
         ],
@@ -321,7 +320,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
         blocks: [
           {
             kind: "text",
-            text: "Planned means a later milestone has to design this. It does not mean the design is finished, and nothing on this page should be read as a feed a program can call today. Milestone 4 copies observed accounts into a read model; data and price verification come after that.",
+            text: "Planned means a later milestone has to design this. The price median is an API response, not an account a program can read. Data jobs are still unspecified.",
           },
         ],
       },

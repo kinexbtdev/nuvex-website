@@ -38,7 +38,7 @@ import {
 export const metadata = {
   title: "About",
   description:
-    "Nuvex is a Solana-native verifiable compute and oracle protocol at Milestone 4. VRF is verified on-chain, and a configured indexer can copy those accounts into a read model.",
+    "Nuvex is a Solana-native verifiable compute and oracle protocol at Milestone 5. VRF is verified on-chain. A read model can list those accounts, and a public price median is available off-chain.",
 };
 
 const icons: Record<AboutIcon, LucideIcon> = {

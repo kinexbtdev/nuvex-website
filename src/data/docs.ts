@@ -63,9 +63,8 @@ export const tree = {
         },
         {
           title: "Price",
-          meta: "Aggregation is a median, once built",
+          meta: "Off-chain median of fresh public observations",
           path: "oracle/price",
-          status: "planned",
         },
         {
           title: "AI",

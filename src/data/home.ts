@@ -34,8 +34,8 @@ export const capabilities = {
     {
       icon: "database",
       title: "Oracle data",
-      body: "Price and external data jobs are reserved in the request account. Aggregation and freshness rules are not designed yet.",
-      status: "planned",
+      body: "A public price median is available from the API when enough sources are fresh. It is not written on-chain. Arbitrary data jobs are still not designed.",
+      status: "in-development",
     },
     {
       icon: "cpu",

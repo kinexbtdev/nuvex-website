@@ -14,13 +14,13 @@ import type { CapabilityStatus } from "./protocol";
 
 export const aboutBanner = {
   tag: {
-    strong: "Milestone 4",
-    rest: "— VRF is live, and a read model can list it",
+    strong: "Milestone 5",
+    rest: "— VRF is on-chain, prices are an off-chain median",
     href: "/changelog",
   },
   title: "A verifiable compute protocol",
   accent: "built in the open, one milestone at a time",
-  lead: "Nuvex is a Solana-native verifiable compute and oracle protocol. Programs accept a job, an input, constraints and a callback. Randomness is the first job, and the only one with a runtime today. Milestone 4 copies those accounts into a read model the console can show.",
+  lead: "Nuvex is a Solana-native verifiable compute and oracle protocol. Programs accept a job, an input, constraints and a callback. Randomness is the only job the programs fulfill. A read model can list those accounts, and a public price median can be read from the API. Neither copy is chain authority.",
   primary: { label: "Read the architecture", href: "/architecture" },
   secondary: { label: "Browse the source", href: GITHUB_PROTOCOL_URL },
 };
@@ -75,8 +75,8 @@ export const aboutCapabilities = {
     {
       icon: "database",
       title: "Price and data jobs",
-      body: "The job kinds are reserved in the request account. Median and quorum rules belong to Milestone 5, so no adapter fetches anything.",
-      status: "planned",
+      body: "GET /v1/prices returns a median of fresh Coinbase, Kraken, Binance, or Bybit observations. USD and USDT are not mixed. Programs still reject a Price request. Data jobs have no named source check.",
+      status: "in-development",
     },
     {
       icon: "cpu",

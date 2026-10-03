@@ -169,7 +169,7 @@ export const architecturePage = {
       },
       {
         title: "Read API",
-        body: "GET /v1/requests, /v1/nodes and /v1/network return 200 from that store, including an empty list. They return 503 when no store is configured. GET /health returns authority: none. Jobs, models and prices stay 501.",
+        body: "GET /v1/requests, /v1/nodes and /v1/network return 200 from that store, including an empty list. They return 503 when no store is configured. GET /health returns authority: none. Jobs and models stay 501.",
         status: "in-development",
       },
       {

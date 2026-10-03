@@ -4,7 +4,7 @@ import { docsHref } from "./docs";
 import type { CapabilityStatus } from "./protocol";
 
 export const banner = {
-  tag: { strong: "Developers", rest: "Milestone 4" },
+  tag: { strong: "Developers", rest: "Milestone 5" },
   title: "Derive every address,",
   accent: "prove on the host",
   lead: "The Rust SDK, the JavaScript SDK and the nuvex CLI ship today. They derive protocol addresses and prove a VRF output locally. network can read the configured API. None of them submits a transaction.",

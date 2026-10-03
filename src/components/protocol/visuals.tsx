@@ -75,7 +75,7 @@ export function HeroConsole() {
   ];
   const jobs = [
     { name: "VRF", tone: "bg-[#3ecf8e]", note: "Live" },
-    { name: "Price feeds", tone: "bg-[#8f8f8f]", note: "Planned" },
+    { name: "Price feeds", tone: "bg-[#8f8f8f]", note: "Off-chain" },
     { name: "Compute", tone: "bg-[#8f8f8f]", note: "Planned" },
   ];
 
